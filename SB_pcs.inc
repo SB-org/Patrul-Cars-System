@@ -124,6 +124,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
     if(IsPlayerInAnyVehicle(playerid) && pcs_vehid == p_car)
     {
+    	if(newkeys == 1 || newkeys == 9 || newkeys == 33 && oldkeys != 1 || oldkeys != 9 || oldkeys != 33)
+	{   
+            AddVehicleComponent(pcs_vehid, 1010);
+	}
 	switch(newkeys)
 	{
 	    case 320, 512:
