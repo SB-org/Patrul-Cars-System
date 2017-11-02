@@ -433,7 +433,7 @@ static stock
     return 1;
 }
 
-static stock
+stock
     SB_pcs_ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[], button2[])
         return ShowPlayerDialog(playerid, dialogid, style, caption, info, button1, button2);
 
@@ -444,7 +444,7 @@ static stock
 #endif
 #define ShowPlayerDialog SB_pcs_ShowPlayerDialog
 
-static stock
+stock
     SB_pcs_GetVehicleHealth(vehicleid, &Float:health)
         return GetVehicleHealth(vehicleid, health);
 
@@ -455,7 +455,7 @@ static stock
 #endif
 #define GetVehicleHealth SB_pcs_GetVehicleHealth
 
-static stock
+stock
     SB_pcs_SetVehicleHealth(vehicleid, Float:health)
         return SetVehicleHealth(vehicleid, health);
 
@@ -466,7 +466,7 @@ static stock
 #endif
 #define SetVehicleHealth SB_pcs_SetVehicleHealth
 
-static stock
+stock
     SB_pcs_GetVehiclePos(vehicleid, &Float:X, &Float:Y, &Float:Z)
 	return GetVehiclePos(vehicleid, X, Y, Z);
 
@@ -478,7 +478,7 @@ static stock
 #define GetVehiclePos SB_pcs_GetVehiclePos
 
 
-static stock 
+stock 
     SB_pcs_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
 	return SetVehiclePos(vehicleid, x, y, z);
 
@@ -490,7 +490,7 @@ static stock
 #define SetVehiclePos SB_pcs_SetVehiclePos
 
 
-static stock
+stock
     SB_pcs_GetVehicleZAngle(vehicleid, &Float:z_angle)
 	return GetVehicleZAngle(vehicleid, z_angle);
 
@@ -502,7 +502,7 @@ static stock
 #define GetVehicleZAngle SB_pcs_GetVehicleZAngle
 
 
-static stock
+stock
     SB_pcs_SetVehicleZAngle(vehicleid, &Float:z_angle)
 	return SetVehicleZAngle(vehicleid, z_angle);
 
@@ -514,7 +514,7 @@ static stock
 #define SetVehicleZAngle SB_pcs_SetVehicleZAngle
 
 
-static stock
+stock
     SB_pcs_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z)
 	return GetVehicleVelocity(vehicleid, x, y, z);
 
@@ -526,7 +526,7 @@ static stock
 #define GetVehicleVelocity SB_pcs_GetVehicleVelocity
 
 
-static stock
+stock
     SB_pcs_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z)
 	return SetVehicleVelocity(vehicleid, x, y, z);
 
