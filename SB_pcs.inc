@@ -78,21 +78,21 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 
     if(pcs_vehid == p_car)
     {
-		#if defined streamer_included || defined STREAMER_TYPE_OBJECT
-			if(IsValidDynamicObject(p_car_fnitro)) 
-				DestroyDynamicObject(p_car_fnitro);
-			if(IsValidDynamicObject(p_car_neon_1))
-				DestroyDynamicObject(p_car_neon_1);
-			if(IsValidDynamicObject(p_car_neon_2))
-			DestroyDynamicObject(p_car_neon_2);
-		#else
-			if(IsValidObject(p_car_fnitro))
-				DestroyObject(p_car_fnitro);
-			if(IsValidObject(p_car_neon_1)) 
-				DestroyObject(p_car_neon_1);
-			if(IsValidObject(p_car_neon_2)) 
-				DestroyObject(p_car_neon_2);	
-		#endif    
+	#if defined streamer_included || defined STREAMER_TYPE_OBJECT
+	    if(IsValidDynamicObject(p_car_fnitro)) 
+		DestroyDynamicObject(p_car_fnitro);
+	    if(IsValidDynamicObject(p_car_neon_1))
+		DestroyDynamicObject(p_car_neon_1);
+	    if(IsValidDynamicObject(p_car_neon_2))
+		DestroyDynamicObject(p_car_neon_2);
+	#else
+	    if(IsValidObject(p_car_fnitro))
+		DestroyObject(p_car_fnitro);
+	    if(IsValidObject(p_car_neon_1)) 
+		DestroyObject(p_car_neon_1);
+	    if(IsValidObject(p_car_neon_2)) 
+		DestroyObject(p_car_neon_2);	
+	#endif    
     }
     return 1;
 }
@@ -112,96 +112,96 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
     if(IsPlayerInAnyVehicle(playerid) && pcs_vehid == p_car)
     {
-		switch(newkeys)
-		{
-			case 320, 512:
-			{
-				CarAngle(pcs_vehid);
-			}
-	        case 2:
-	        {
-				AddVehicleComponent(pcs_vehid, 1087);
-			}
-			case 4:
-			{
-				ShowPlayerDialog(
-                      playerid, D_PCS_NITRO, DIALOG_STYLE_LIST,
-						!"{00FFFF}Какое нитро?",
-						!"{00FF00}110км/ч\n{FFFF00}130км/ч\n{FF0000}200км/ч", !"Выбрать", !"Закрыть");
+	switch(newkeys)
+	{
+	    case 320, 512:
+	    {
+		CarAngle(pcs_vehid);
+	    }
+	    case 2:
+	    {
+		AddVehicleComponent(pcs_vehid, 1087);
+	    }
+	    case 4:
+	    {
+		ShowPlayerDialog(
+                    playerid, D_PCS_NITRO, DIALOG_STYLE_LIST,
+			!"{00FFFF}Какое нитро?",
+			    !"{00FF00}110км/ч\n{FFFF00}130км/ч\n{FF0000}200км/ч", !"Выбрать", !"Закрыть");
 
-				if(p_car_nitro{playerid} == 0)
-				{	
-					#if defined streamer_included || defined STREAMER_TYPE_OBJECT
-						if(IsValidDynamicObject(p_car_fnitro) 
-							DestroyDynamicObject(p_car_fnitro);
-						else 
-						{
-							p_car_fnitro = CreateDynamicObject(18694, 0, 0, 0, 0, 0, 0);
-							AttachDynamicObjectToVehicle(p_car_fnitro, pcs_vehid, -1.2, -2.0, 2.80, 180.0, 0.0, 0.0);
-						}
-						if(IsValidDynamicObject(p_car_neon_1))
-							DestroyDynamicObject(p_car_neon_1);
-						else
-						{
-							p_car_neon_1 = CreateDynamicObject(18648, 0, 0, 0, 0, 0, 0);
-							AttachDynamicObjectToVehicle(p_car_neon_1, pcs_vehid, -1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
-						}
-						if(IsValidDynamicObject(p_car_neon_2))
-							DestroyDynamicObject(p_car_neon_2);
-						else
-						{
-							p_car_neon_2 = CreateDynamicObject(18648, 0, 0, 0, 0, 0, 0);
-							AttachDynamicObjectToVehicle(p_car_neon_2, pcs_vehid, 1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
-						}
-						if(IsValidDynamicObject(p_car_fsiren))
-							DestroyDynamicObject(p_car_fsiren);
-						else
-						{
-							p_car_fsiren = CreateDynamicObject(19419, 0, 0, 0, 0, 0, 0);
-							AttachDynamicObjectToVehicle(p_car_fsiren, pcs_vehid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
-						}
-					#else
-						if(IsValidObject(p_car_fnitro))
-							DestroyObject(p_car_fnitro);
-						else
-						{
-							p_car_fnitro = CreateObject(18694, 0, 0, 0, 0, 0, 0);
-							AttachObjectToVehicle(p_car_fnitro, pcs_vehid, -1.2, -2.0, 2.80, 180.0, 0.0, 0.0);
-						}
-						if(IsValidObject(p_car_neon_1))
-							DestroyObject(p_car_neon_1);
-						else
-						{
-							p_car_neon_1 = CreateObject(18648, 0, 0, 0, 0, 0, 0);
-							AttachObjectToVehicle(p_car_neon_1, pcs_vehid, -1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
-						}
-						if(IsValidObject(p_car_neon_2)) 
-							DestroyObject(p_car_neon_2);
-						else
-						{
-							p_car_neon_2 = CreateObject(18648, 0, 0, 0, 0, 0, 0);
-							AttachObjectToVehicle(p_car_neon_2, pcs_vehid, 1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
-						}
-						if(IsValidObject(p_car_fsiren))
-							DestroyObject(p_car_fsiren);
-						else
-						{
-							p_car_fsiren = CreateObject(19419, 0, 0, 0, 0, 0, 0);
-							AttachObjectToVehicle(p_car_fsiren, pcs_vehid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
-						}	
-					#endif   
-				}
-			}
-			case 12:
+		if(p_car_nitro{playerid} == 0)
+		{	
+		    #if defined streamer_included || defined STREAMER_TYPE_OBJECT
+		        if(IsValidDynamicObject(p_car_fnitro) 
+			    DestroyDynamicObject(p_car_fnitro);
+			else 
 			{
-				switch(p_car_nitro{playerid})
-				{
-					case 1:
-					{
-						SetVehicleSpeed(pcs_vehid, 110);
-						p_car_nitro{playerid} = 1;
-					}
-					case 2:
+			    p_car_fnitro = CreateDynamicObject(18694, 0, 0, 0, 0, 0, 0);
+			    AttachDynamicObjectToVehicle(p_car_fnitro, pcs_vehid, -1.2, -2.0, 2.80, 180.0, 0.0, 0.0);
+			}
+			if(IsValidDynamicObject(p_car_neon_1))
+			    DestroyDynamicObject(p_car_neon_1);
+			else
+			{
+			    p_car_neon_1 = CreateDynamicObject(18648, 0, 0, 0, 0, 0, 0);
+			    AttachDynamicObjectToVehicle(p_car_neon_1, pcs_vehid, -1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
+			}
+			if(IsValidDynamicObject(p_car_neon_2))
+			    DestroyDynamicObject(p_car_neon_2);
+			else
+			{
+			    p_car_neon_2 = CreateDynamicObject(18648, 0, 0, 0, 0, 0, 0);
+			    AttachDynamicObjectToVehicle(p_car_neon_2, pcs_vehid, 1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
+			}
+			if(IsValidDynamicObject(p_car_fsiren))
+			    DestroyDynamicObject(p_car_fsiren);
+			else
+			{
+			    p_car_fsiren = CreateDynamicObject(19419, 0, 0, 0, 0, 0, 0);
+			    AttachDynamicObjectToVehicle(p_car_fsiren, pcs_vehid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
+			}
+		    #else
+			if(IsValidObject(p_car_fnitro))
+			    DestroyObject(p_car_fnitro);
+			else
+			{
+			    p_car_fnitro = CreateObject(18694, 0, 0, 0, 0, 0, 0);
+			    AttachObjectToVehicle(p_car_fnitro, pcs_vehid, -1.2, -2.0, 2.80, 180.0, 0.0, 0.0);
+			}
+			if(IsValidObject(p_car_neon_1))
+			    DestroyObject(p_car_neon_1);
+			else
+			{
+			    p_car_neon_1 = CreateObject(18648, 0, 0, 0, 0, 0, 0);
+			    AttachObjectToVehicle(p_car_neon_1, pcs_vehid, -1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
+			}
+			if(IsValidObject(p_car_neon_2)) 
+			    DestroyObject(p_car_neon_2);
+			else
+			{
+			    p_car_neon_2 = CreateObject(18648, 0, 0, 0, 0, 0, 0);
+			    AttachObjectToVehicle(p_car_neon_2, pcs_vehid, 1.0, -0.3, -0.36, 0.0, 0.0, 0.0);
+			}
+			if(IsValidObject(p_car_fsiren))
+			    DestroyObject(p_car_fsiren);
+			else
+			{
+			    p_car_fsiren = CreateObject(19419, 0, 0, 0, 0, 0, 0);
+			    AttachObjectToVehicle(p_car_fsiren, pcs_vehid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
+			}	
+		    #endif   
+	            }
+	    }
+	    case 12:
+	    {
+	        switch(p_car_nitro{playerid})
+		{
+		    case 1:
+		    {
+		        SetVehicleSpeed(pcs_vehid, 110);
+			p_car_nitro{playerid} = 1;
+		    }
+		    case 2:
 					{
 						SetVehicleSpeed(pcs_vehid, 130);
 						p_car_nitro{playerid} = 2;
