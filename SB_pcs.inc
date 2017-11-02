@@ -202,18 +202,18 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			p_car_nitro{playerid} = 1;
 		    }
 		    case 2:
-					{
-						SetVehicleSpeed(pcs_vehid, 130);
-						p_car_nitro{playerid} = 2;
-					}
-					case 3:
-					{
-						SetVehicleSpeed(pcs_vehid, 200);
-						p_car_nitro{playerid} = 3;
-					}
-				}
-			}
+		    {
+		        SetVehicleSpeed(pcs_vehid, 130);
+			p_car_nitro{playerid} = 2;
+		    }
+		    case 3:
+		    {
+			SetVehicleSpeed(pcs_vehid, 200);
+			p_car_nitro{playerid} = 3;
+		    }
 		}
+	    }
+        }
     }
     return 1;
 }
@@ -233,21 +233,21 @@ public OnVehicleDeath(vehicleid, killerid)
 
     if(pcs_vehid == p_car)
     {
-		#if defined streamer_included || defined STREAMER_TYPE_OBJECT
-			if(IsValidDynamicObject(p_car_fnitro))
-				DestroyDynamicObject(p_car_fnitro);
-			if(IsValidDynamicObject(p_car_neon_1))
-				DestroyDynamicObject(p_car_neon_1);
-			if(IsValidDynamicObject(p_car_neon_2))
-				DestroyDynamicObject(p_car_neon_2);
-		#else
-			if(IsValidObject(p_car_fnitro))
-				DestroyObject(p_car_fnitro);
-			if(IsValidObject(p_car_neon_1))
-				DestroyObject(p_car_neon_1);
-			if(IsValidObject(p_car_neon_2))
-				DestroyObject(p_car_neon_2);	
-		#endif    
+	#if defined streamer_included || defined STREAMER_TYPE_OBJECT
+	    if(IsValidDynamicObject(p_car_fnitro))
+		DestroyDynamicObject(p_car_fnitro);
+	    if(IsValidDynamicObject(p_car_neon_1))
+		DestroyDynamicObject(p_car_neon_1);
+	    if(IsValidDynamicObject(p_car_neon_2))
+		DestroyDynamicObject(p_car_neon_2);
+        #else
+	    if(IsValidObject(p_car_fnitro))
+		DestroyObject(p_car_fnitro);
+	    if(IsValidObject(p_car_neon_1))
+		DestroyObject(p_car_neon_1);
+	    if(IsValidObject(p_car_neon_2))
+		DestroyObject(p_car_neon_2);	
+	#endif    
     }
     return 1;
 }
@@ -281,12 +281,12 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 {
     if(vehicleid == p_car)
     {
-		new Float:pcs_vhealth;
+	new Float:pcs_vhealth;
 
-		GetVehicleHealth(vehicleid, pcs_vhealth);
+	GetVehicleHealth(vehicleid, pcs_vhealth);
 
         if(pcs_vhealth < 1000.0)
-			SetVehicleHealth(vehicleid, 1000.0);
+	    SetVehicleHealth(vehicleid, 1000.0);
     }
     return 1;
 }
@@ -304,30 +304,30 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
     switch(dialogid)
     {
-		case D_PCS_NITRO:
+	case D_PCS_NITRO:
+	{
+	    if(response)
+	    {
+	        switch(listitem)
 		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						p_car_nitro{playerid} = 1;
-						SendClientMessage(playerid, 0xFF000000, !"Нитро 110км/ч активировано!");
-					}	
-					case 1:
-					{
-						p_car_nitro{playerid} = 2;
-						SendClientMessage(playerid, 0xFF000000, !"Нитро 130км/ч активировано!");
-					}
-					case 2:
-					{
-						p_car_nitro{playerid} = 3;
-						SendClientMessage(playerid, 0xFF000000, !"Нитро 200км/ч активировано!");
-					}
-				}
-			}
+		    case 0:
+		    {
+			p_car_nitro{playerid} = 1;
+			SendClientMessage(playerid, 0xFF000000, !"Нитро 110км/ч активировано!");
+		    }	
+		    case 1:
+		    {
+		        p_car_nitro{playerid} = 2;
+			SendClientMessage(playerid, 0xFF000000, !"Нитро 130км/ч активировано!");
+		    }
+		    case 2:
+		    {
+			p_car_nitro{playerid} = 3;
+			SendClientMessage(playerid, 0xFF000000, !"Нитро 200км/ч активировано!");
+		    }
 		}
+	    }
+        }
     }
     return 1;
 }
@@ -346,11 +346,12 @@ static stock
     AddDefTune(p_carid)
 {
     AddVehicleComponent(p_carid, 1085);
+    
     #if defined streamer_included || defined STREAMER_TYPE_OBJECT
         p_car_siren = CreateDynamicObject(19420, 0, 0, 0, 0, 0, 0);
         AttachDynamicObjectToVehicle(p_car_siren, p_carid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
     #else
-		p_car_siren = CreateObject(19420, 0, 0, 0, 0, 0, 0);
+	p_car_siren = CreateObject(19420, 0, 0, 0, 0, 0, 0);
         AttachObjectToVehicle(p_car_siren, p_carid, 0.0, 0.0, 1.1, 0.0, 0.0, 0.0);
     #endif
 
@@ -380,12 +381,12 @@ static stock
 {
     new
         Float:pcs_x1, 
-		Float:pcs_y1, 
-		Float:pcs_z1, 
-		Float:pcs_x2, 
-		Float:pcs_y2, 
-		Float:pcs_z2, 
-		Float:pcs_a;
+	Float:pcs_y1, 
+	Float:pcs_z1, 
+	Float:pcs_x2, 
+	Float:pcs_y2, 
+	Float:pcs_z2, 
+	Float:pcs_a;
 		
     GetVehicleVelocity(p_carid, pcs_x1, pcs_y1, pcs_z1);
     GetVehiclePos(p_carid, pcs_x2, pcs_y2, pcs_z2);
@@ -435,7 +436,7 @@ static stock
 
 static stock
     SB_pcs_GetVehiclePos(vehicleid, &Float:X, &Float:Y, &Float:Z)
-		return GetVehiclePos(vehicleid, X, Y, Z);
+	return GetVehiclePos(vehicleid, X, Y, Z);
 
 #if defined _ALS_GetVehiclePos
     #undef GetVehiclePos
@@ -447,7 +448,7 @@ static stock
 
 static stock 
     SB_pcs_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
-		return SetVehiclePos(vehicleid, x, y, z);
+	return SetVehiclePos(vehicleid, x, y, z);
 
 #if defined _ALS_SetVehiclePos
     #undef SetVehiclePos
@@ -459,7 +460,7 @@ static stock
 
 static stock
     SB_pcs_GetVehicleZAngle(vehicleid, &Float:z_angle)
-		return GetVehicleZAngle(vehicleid, z_angle);
+	return GetVehicleZAngle(vehicleid, z_angle);
 
 #if defined _ALS_GetVehicleZAngle
     #undef GetVehicleZAngle
@@ -471,7 +472,7 @@ static stock
 
 static stock
     SB_pcs_SetVehicleZAngle(vehicleid, &Float:z_angle)
-		return SetVehicleZAngle(vehicleid, z_angle);
+	return SetVehicleZAngle(vehicleid, z_angle);
 
 #if defined _ALS_SetVehicleZAngle
     #undef SetVehicleZAngle
@@ -483,7 +484,7 @@ static stock
 
 static stock
     SB_pcs_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z)
-		return GetVehicleVelocity(vehicleid, x, y, z);
+	return GetVehicleVelocity(vehicleid, x, y, z);
 
 #if defined _ALS_GetVehicleVelocity
     #undef GetVehicleVelocity
@@ -495,7 +496,7 @@ static stock
 
 static stock
     SB_pcs_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z)
-		return SetVehicleVelocity(vehicleid, x, y, z);
+	return SetVehicleVelocity(vehicleid, x, y, z);
 
 #if defined _ALS_SetVehicleVelocity
     #undef SetVehicleVelocity
