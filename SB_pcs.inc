@@ -42,7 +42,11 @@ public OnGameModeInit()
     SetVehicleNumberPlate(p_car, !"PATRUL");
     AddDefTune(p_car);	   
 
-    return SB_pcs_OnGameModeInit();
+    #if defined SB_pcs_OnGameModeInit
+        return SB_pcs_OnGameModeInit();
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnGameModeInit
     #undef OnGameModeInit
@@ -58,7 +62,11 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
     p_car_nitro{playerid} = 0;
 
-    return 1;
+    #if defined SB_pcs_OnPlayerEnterVehicle
+    	return SB_pcs_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnPlayerEnterVehicle
     #undef OnPlayerEnterVehicle
@@ -94,7 +102,11 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		DestroyObject(p_car_neon_2);	
 	#endif    
     }
-    return 1;
+    #if defined SB_pcs_OnPlayerExitVehicle
+    	return SB_pcs_OnPlayerExitVehicle(playerid, vehicleid);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnPlayerExitVehicle
     #undef OnPlayerExitVehicle
@@ -215,7 +227,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	    }
         }
     }
-    return 1;
+    #if defined SB_pcs_OnPlayerKeyStateChange
+    	return SB_pcs_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnPlayerKeyStateChange
     #undef OnPlayerKeyStateChange
@@ -249,7 +265,11 @@ public OnVehicleDeath(vehicleid, killerid)
 		DestroyObject(p_car_neon_2);	
 	#endif    
     }
-    return 1;
+    #if defined SB_pcs_OnVehicleDeath
+    	return SB_pcs_OnVehicleDeath(vehicleid, killerid);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnVehicleDeath
     #undef OnVehicleDeath
@@ -265,7 +285,11 @@ public OnVehicleSpawn(vehicleid)
 {
     AddVehicleComponent(p_car, 1085);	
 
-    return 1;
+    #if defined SB_pcs_OnVehicleSpawn
+        return SB_pcs_OnVehicleSpawn(vehicleid);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnVehicleSpawn
     #undef OnVehicleSpawn
@@ -288,7 +312,11 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
         if(pcs_vhealth < 1000.0)
 	    SetVehicleHealth(vehicleid, 1000.0);
     }
-    return 1;
+    #if defined SB_pcs_OnVehicleDamageStatusUpd
+        return SB_pcs_OnVehicleDamageStatusUpd(vehicleid, playerid);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnVehicleDamageStatusUpdat
     #undef OnVehicleDamageStatusUpdate
@@ -329,7 +357,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    }
         }
     }
-    return 1;
+    #if defined SB_pcs_OnDialogResponse
+        return SB_pcs_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
+    #else
+        return 1;
+    #endif
 }
 #if defined _ALS_OnDialogResponse
     #undef OnDialogResponse
